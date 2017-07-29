@@ -3,11 +3,13 @@ import me.aoa4eva.demo.classes.Product;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-/*This is a sample invoice application */
+/** This is a sample invoice application 
+ * @author aoa4eva
+ * */
 public class InvoiceMain {
 
     public static void main(String[] args) {
-
+    	/** Variables to be used in the application*/
         double productPrice;
         String productDesc;
         double taxRate;
@@ -16,13 +18,16 @@ public class InvoiceMain {
 
         double taxCharged;
         String response="y";
-        ArrayList<Product> pList;
-
+        
+        //The 'shopping list' 
+        ArrayList<Product> pList=new ArrayList <Product>();
+        
+        //Created to accept user input 
         Scanner sc = new Scanner(System.in);
-
-        pList = new ArrayList <Product>();
-
+        
+        //Prompt user for tax rate 
         System.out.println("Enter tax rate");
+        //use .hasNext for data types to validate for each type 
         while(!sc.hasNextDouble())
         {
             System.out.println("Invalid number. Please enter a tax rate e.g. '3'");
@@ -30,8 +35,10 @@ public class InvoiceMain {
 
         }
         taxRate = sc.nextDouble();
+        //Use this to capture the return (enter) key, so that the app does not skip to the next line
         sc.nextLine();
 
+        //Check to see if the user would like to enter another product
         do{
             if(!response.equalsIgnoreCase("y"))
             {
@@ -66,14 +73,17 @@ public class InvoiceMain {
             System.out.println("Would you like to enter more product details? ");
             response = sc.nextLine();
         }while(!response.equalsIgnoreCase("n"));
-
+        
+        //Iterate through the 'shopping list' 
         for(Product aNewProduct : pList)
         {
-            System.out.println(aNewProduct.toString());
+            //Use the toString() method to show what the product item contains
+        	System.out.println(aNewProduct.toString());
             productTotal+=aNewProduct.getPrice();
         }
         taxCharged = (taxRate/100) * productTotal;
-
+        
+        //Show the pre-tax total, tax charged and total amount in plain text
         System.out.println("The pre-tax total is:"+totalAmount);
         System.out.println("The tax due is:"+taxCharged);
         totalAmount=productTotal+taxCharged;
@@ -82,14 +92,23 @@ public class InvoiceMain {
         //Format to two decimal places
 
         //Display a table (courtesy http://bit.ly/2uIAkNb)
+        /*Format the body of the table to have a | character, followed by 
+         * 35 string characters
+         * and another | followed by a float, made up of 10 digits for the number
+         * and 2 digits for the decimal place
+         * Move to the net line (%n)
+         */
         String leftAlignFormat = "| %-35s | %-10.2f |%n";
+        
 
         System.out.format("+-------------------------------------+------------+%n");
         System.out.format("| Description                         | Price      |%n");
         System.out.format("+-------------------------------------+------------+%n");
         for(Product aNewProduct : pList)
         {
-            //System.out.format(leftAlignFormat, "some data" + i, i * i);
+        	/*Format the string using the product description as the string, and the product price
+        	as the float to display
+        	*/
             System.out.format(leftAlignFormat,aNewProduct.getDescription(),aNewProduct.getPrice());
         }
         System.out.format("+-------------------------------------+------------+%n");
