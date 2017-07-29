@@ -1,9 +1,14 @@
 package me.aoa4eva.demo.classes;
 
 public class Product {
+	/**
+	 * This is a class to hold details about a single product
+	 * */
     private double price;
     private String description;
-
+    /**
+     * Getters and setters are used to change values of the private variables
+     * declared in the class*/
     public double getPrice() {
         return price;
     }
