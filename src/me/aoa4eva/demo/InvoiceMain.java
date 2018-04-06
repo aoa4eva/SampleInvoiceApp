@@ -84,7 +84,7 @@ public class InvoiceMain {
         taxCharged = (taxRate/100) * productTotal;
         
         //Show the pre-tax total, tax charged and total amount in plain text
-        System.out.println("The pre-tax total is:"+totalAmount);
+        System.out.println("The pre-tax total is:"+productTotal);
         System.out.println("The tax due is:"+taxCharged);
         totalAmount=productTotal+taxCharged;
         System.out.println("The Grand Total is:"+totalAmount);
